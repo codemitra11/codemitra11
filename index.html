@@ -113,7 +113,7 @@ int main() {
 
 }
 </pre>
-</div><div class="card"></div>
+</div><div class="card">
 <h3>Armstrong Number</h3>
 <pre>
     #include <stdio.h>
@@ -134,6 +134,28 @@ int main() {
         printf("Not Armstrong");
 }
 </pre>
+    </div><div class="card">
+    <h3>Prime Number</h3>
+        <pre>
+            #include <stdio.h>
+int main() {
+    int n, i, flag = 0;
+    scanf("%d", &n);
+
+    for(i = 2; i <= n/2; i++) {
+        if(n % i == 0) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if(flag == 0 && n != 1)
+        printf("Prime");
+    else
+        printf("Not Prime");
+}
+    </pre>
+    </div>
   </stdio.h>  
         </div><footer>
     <p>© 2026 CodeMitra</p>

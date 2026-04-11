@@ -133,7 +133,27 @@ int main() {
     else
         printf("Not Armstrong");
 } </pre>
-</div>
+</div><div class="card"></div>
+<h3>Armstrong Number</h3>
+<pre>
+    #include <stdio.h>
+int main() {
+    int n, temp, r, sum = 0;
+    scanf("%d", &n);
+    temp = n;
+
+    while(n > 0) {
+        r = n % 10;
+        sum += r*r*r;
+        n /= 10;
+    }
+
+    if(sum == temp)
+        printf("Armstrong");
+    else
+        printf("Not Armstrong");
+}
+</pre>
   </stdio.h>  
         </div><footer>
     <p>© 2026 CodeMitra</p>

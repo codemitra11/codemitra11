@@ -1,96 +1,96 @@
  <!DOCTYPE html><html>
-  <head>
-                                <title>CodeMitra - Advanced</title>
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                <style>
-                                    body { font-family: Arial; margin: 0; background: #f4f4f4; }
-                                    header { background: #007bff; color: white; padding: 15px; text-align: center; }
-                                    nav { background: #222; padding: 10px; text-align: center; }
-                                    nav a { color: white; margin: 10px; text-decoration: none; }
-                                    .search { padding: 10px; text-align: center; }
-                                    input { width: 80%; padding: 10px; }
-                                    .container { padding: 20px; }
-                                    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; }
-                                    footer { background: #333; color: white; text-align: center; padding: 10px; }
-                                </style>
-                                <script>
-                                    function searchPosts() {
-                                        let input = document.getElementById("search").value.toLowerCase();
-                                        let cards = document.getElementsByClassName("card");
-                                        for (let i = 0; i < cards.length; i++) {
-                                            let text = cards[i].innerText.toLowerCase();
-                                            cards[i].style.display = text.includes(input) ? "block" : "none";
-                                        }
-                                    }
-                                </script>
-                            </head>
-                            <body><header>
-                                <h1>CodeMitra</h1>
-                                <p>Learn Coding Easily</p>
-                            </header><nav>
-                                <a href="index.html">Home</a>
-                                <a href="index1x.html">C Programs</a>
-                                <a href="python.html">Python</a>
-                                <a href="#">Contact</a>
-                            </nav><div class="search">
-                                <input type="text" id="search" onkeyup="searchPosts()" placeholder="Search programs...">
-                            </div><div class="container"><div class="card">
-                            <h3>Palindrome Program in C</h3>
-                            <pre>
-                            #include <stdio.h>
-                            int main() {
-                                int n, rev = 0, temp;
-                                scanf("%d", &n);
-                                temp = n;
-                                while(n != 0) {
-                                    rev = rev * 10 + n % 10;
-                                    n /= 10;
-                                }
-                                if(temp == rev)
-                                    printf("Palindrome");
-                                else
-                                    printf("Not Palindrome");
-                            }
-                            </pre>
-                            </div><div class="card">
-                            <h3>Fibonacci Series (Recursion)</h3>
-                            <pre>
-                            #include <stdio.h>
-                            int fib(int n) {
-                                if(n<=1) return n;
-                                return fib(n-1)+fib(n-2);
-                            }
-                            int main() {
-                                int i;
-                                for(i=0;i<10;i++)
-                                    printf("%d ", fib(i));
-                            }
-                            </pre>
-                            </div><div class="card">
-                            <h3>GCD of Two Numbers</h3>
-                            <pre>
-                            #include <stdio.h>
-                            int gcd(int a, int b) {
-                                if(b==0) return a;
-                                return gcd(b, a%b);
-                            }
-                            int main() {
-                                printf("%d", gcd(12, 18));
-                            }
-                            </pre>
-                            </div><div class="card">
-                            <h3>Reverse String</h3>
-                            <pre>
-                            #include <stdio.h>
-                            #include <string.h>
-                            int main() {
-                                char str[100];
-                                scanf("%s", str);
-                                int len = strlen(str);
-                                for(int i=len-1;i>=0;i--)
-                                    printf("%c", str[i]);
-                            }
-                            </pre>
+<head>
+    <title>CodeMitra - Advanced</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial; margin: 0; background: #f4f4f4; }
+        header { background: #007bff; color: white; padding: 15px; text-align: center; }
+        nav { background: #222; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 10px; text-decoration: none; }
+        .search { padding: 10px; text-align: center; }
+        input { width: 80%; padding: 10px; }
+        .container { padding: 20px; }
+        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; }
+        footer { background: #333; color: white; text-align: center; padding: 10px; }
+    </style>
+    <script>
+        function searchPosts() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let cards = document.getElementsByClassName("card");
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                cards[i].style.display = text.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
+</head>
+<body><header>
+    <h1>CodeMitra</h1>
+    <p>Learn Coding Easily</p>
+</header><nav>
+    <a href="index.html">Home</a>
+    <a href="inde1x.html">C Programs</a>
+    <a href="python.html">Python</a>
+    <a href="#">Contact</a>
+</nav><div class="search">
+    <input type="text" id="search" onkeyup="searchPosts()" placeholder="Search programs...">
+</div><div class="container"><div class="card">
+<h3>Palindrome Program in C</h3>
+<pre>
+#include <stdio.h>
+int main() {
+    int n, rev = 0, temp;
+    scanf("%d", &n);
+    temp = n;
+    while(n != 0) {
+        rev = rev * 10 + n % 10;
+        n /= 10;
+    }
+    if(temp == rev)
+        printf("Palindrome");
+    else
+        printf("Not Palindrome");
+}
+</pre>
+</div><div class="card">
+<h3>Fibonacci Series (Recursion)</h3>
+<pre>
+#include <stdio.h>
+int fib(int n) {
+    if(n<=1) return n;
+    return fib(n-1)+fib(n-2);
+}
+int main() {
+    int i;
+    for(i=0;i<10;i++)
+        printf("%d ", fib(i));
+}
+</pre>
+</div><div class="card">
+<h3>GCD of Two Numbers</h3>
+<pre>
+#include <stdio.h>
+int gcd(int a, int b) {
+    if(b==0) return a;
+    return gcd(b, a%b);
+}
+int main() {
+    printf("%d", gcd(12, 18));
+}
+</pre>
+</div><div class="card">
+<h3>Reverse String</h3>
+<pre>
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char str[100];
+    scanf("%s", str);
+    int len = strlen(str);
+    for(int i=len-1;i>=0;i--)
+        printf("%c", str[i]);
+}
+</pre>
   </div><div class="card">
 <h3>Matrix Addition</h3>
             <pre>

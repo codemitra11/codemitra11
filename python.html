@@ -1,6 +1,29 @@
 <!DOCTYPEhtml>
 <html>
 <head>
+   <title>CodeMitra - Advanced</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial; margin: 0; background: #f4f4f4; }
+        header { background: #007bff; color: white; padding: 15px; text-align: center; }
+        nav { background: #222; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 10px; text-decoration: none; }
+        .search { padding: 10px; text-align: center; }
+        input { width: 80%; padding: 10px; }
+        .container { padding: 20px; }
+        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; }
+        footer { background: #333; color: white; text-align: center; padding: 10px; }
+    </style>
+    <script>
+        function searchPosts() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let cards = document.getElementsByClassName("card");
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                cards[i].style.display = text.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
 </head>
 <body>
 <h2 align="center">Coming soon</h2>

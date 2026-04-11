@@ -1,8 +1,182 @@
-<!DOCTYOEhtml>
-<html>
-  <head>
-  </head>
-  <body>
-    <h3>HEllo World</h3>
-  </body>
+                            <!DOCTYPE html><html>
+                            <head>
+                                <title>CodeMitra - Advanced</title>
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <style>
+                                    body { font-family: Arial; margin: 0; background: #f4f4f4; }
+                                    header { background: #007bff; color: white; padding: 15px; text-align: center; }
+                                    nav { background: #222; padding: 10px; text-align: center; }
+                                    nav a { color: white; margin: 10px; text-decoration: none; }
+                                    .search { padding: 10px; text-align: center; }
+                                    input { width: 80%; padding: 10px; }
+                                    .container { padding: 20px; }
+                                    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; }
+                                    footer { background: #333; color: white; text-align: center; padding: 10px; }
+                                </style>
+                                <script>
+                                    function searchPosts() {
+                                        let input = document.getElementById("search").value.toLowerCase();
+                                        let cards = document.getElementsByClassName("card");
+                                        for (let i = 0; i < cards.length; i++) {
+                                            let text = cards[i].innerText.toLowerCase();
+                                            cards[i].style.display = text.includes(input) ? "block" : "none";
+                                        }
+                                    }
+                                </script>
+                            </head>
+                            <body><header>
+                                <h1>CodeMitra</h1>
+                                <p>Learn Coding Easily</p>
+                            </header><nav>
+                                <a href="inde1x.html">Home</a>
+                                <a href="#">C Programs</a>
+                                <a href="#">Python</a>
+                                <a href="#">Contact</a>
+                            </nav><div class="search">
+                                <input type="text" id="search" onkeyup="searchPosts()" placeholder="Search programs...">
+                            </div><div class="container"><div class="card">
+                            <h3>Palindrome Program in C</h3>
+                            <pre>
+                            #include <stdio.h>
+                            int main() {
+                                int n, rev = 0, temp;
+                                scanf("%d", &n);
+                                temp = n;
+                                while(n != 0) {
+                                    rev = rev * 10 + n % 10;
+                                    n /= 10;
+                                }
+                                if(temp == rev)
+                                    printf("Palindrome");
+                                else
+                                    printf("Not Palindrome");
+                            }
+                            </pre>
+                            </div><div class="card">
+                            <h3>Fibonacci Series (Recursion)</h3>
+                            <pre>
+                            #include <stdio.h>
+                            int fib(int n) {
+                                if(n<=1) return n;
+                                return fib(n-1)+fib(n-2);
+                            }
+                            int main() {
+                                int i;
+                                for(i=0;i<10;i++)
+                                    printf("%d ", fib(i));
+                            }
+                            </pre>
+                            </div><div class="card">
+                            <h3>GCD of Two Numbers</h3>
+                            <pre>
+                            #include <stdio.h>
+                            int gcd(int a, int b) {
+                                if(b==0) return a;
+                                return gcd(b, a%b);
+                            }
+                            int main() {
+                                printf("%d", gcd(12, 18));
+                            }
+                            </pre>
+                            </div><div class="card">
+                            <h3>Reverse String</h3>
+                            <pre>
+                            #include <stdio.h>
+                            #include <string.h>
+                            int main() {
+                                char str[100];
+                                scanf("%s", str);
+                                int len = strlen(str);
+                                for(int i=len-1;i>=0;i--)
+                                    printf("%c", str[i]);
+                            }
+                        </pre>
+                        </div><div class="card">
+                        <h3>Matrix Addition</h3>
+            <pre>
+#include <stdio.h>
+int main() {
+    int a[2][2], b[2][2], c[2][2];
+    for(int i=0;i<2;i++)
+        for(int j=0;j<2;j++)
+            scanf("%d", &a[i][j]);
+    for(int i=0;i<2;i++)
+        for(int j=0;j<2;j++) {
+            scanf("%d", &b[i][j]);
+            c[i][j] = a[i][j] + b[i][j];
+        }
+    for(int i=0;i<2;i++) {
+        for(int j=0;j<2;j++)
+            printf("%d ", c[i][j]);
+        printf("\n");
+    }
+
+}
+</pre>
+</div><div class="card">
+<h3>Armstrong Number</h3>
+<pre>
+    #include <stdio.h>
+int main() {
+    int n, temp, r, sum = 0;
+    scanf("%d", &n);
+    temp = n;
+
+    while(n > 0) {
+        r = n % 10;
+        sum += r*r*r;
+        n /= 10;
+    }
+
+    if(sum == temp)
+        printf("Armstrong");
+    else
+        printf("Not Armstrong");
+}
+</pre>
+    </div><div class="card">
+    <h3>Prime Number</h3>
+        <pre>
+            #include <stdio.h>
+int main() {
+    int n, i, flag = 0;
+    scanf("%d", &n);
+
+    for(i = 2; i <= n/2; i++) {
+        if(n % i == 0) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if(flag == 0 && n != 1)
+        printf("Prime");
+    else
+        printf("Not Prime");
+}
+    </pre>
+    </div>
+  </stdio.h>  
+        </div><footer>
+    <p>© 2026 CodeMitra</p>
+</footer>
+<!-- Default Statcounter code for raj
+https://rajdesai1812-wq.github.io -->
+<script type="text/javascript">
+var sc_project=13221579; 
+var sc_invisible=1; 
+var sc_security="9ec2588b"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - Statcounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13221579/0/9ec2588b/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code --> 
+        </body>
 </html>
+

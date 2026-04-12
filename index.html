@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -208,6 +209,90 @@
             font-size: 0.9rem;
         }
  
+        /* Header Styles */
+        .top-header {
+            background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 0;
+            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
+        }
+ 
+        .top-header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: white;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: none;
+            -webkit-text-fill-color: white;
+        }
+ 
+        .top-header p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin: 10px 0 0 0;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+ 
+        /* Navigation */
+        .navbar {
+            background-color: #222;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+ 
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 18px 30px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+ 
+        .navbar a:hover {
+            background-color: #333;
+            border-bottom-color: #0066ff;
+            color: #0066ff;
+        }
+ 
+        /* Search Bar */
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+ 
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            color: #333;
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+ 
+        .search-box:focus {
+            outline: none;
+            border-color: #0066ff;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.2);
+        }
+ 
+        .search-box::placeholder {
+            color: #999;
+        }
+ 
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -216,160 +301,219 @@
             h1 {
                 font-size: 2.2rem;
             }
+ 
+            .top-header h1 {
+                font-size: 2rem;
+            }
+ 
+            .navbar {
+                flex-wrap: wrap;
+            }
+ 
+            .navbar a {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
         }
-        </style>
+    </style>
 </head>
-<body><header>
-    <h1>CodeMitra</h1>
-    <p>Learn Coding Easily</p>
-</header><nav>
-   <a align="right"> <a href="index.html">Home</a></a>
-    <a href="inde1x.html">C Programs</a>
-    <a href="python.html">Python</a>
-    <a href="#">Contact</a>
-</nav>
-</div><div class="container"><div class="card">
-<h3>Palindrome Program in C</h3>
-<pre>
-#include <stdio.h>
-int main() {
-    int n, rev = 0, temp;
-    scanf("%d", &n);
-    temp = n;
-    while(n != 0) {
-        rev = rev * 10 + n % 10;
-        n /= 10;
-    }
-    if(temp == rev)
-        printf("Palindrome");
-    else
-        printf("Not Palindrome");
-}
-</pre>
-</div><div class="card">
-<h3>Fibonacci Series (Recursion)</h3>
-<pre>
-#include <stdio.h>
-int fib(int n) {
-    if(n<=1) return n;
-    return fib(n-1)+fib(n-2);
-}
-int main() {
-    int i;
-    for(i=0;i<10;i++)
-        printf("%d ", fib(i));
-}
-</pre>
-</div><div class="card">
-<h3>GCD of Two Numbers</h3>
-<pre>
-#include <stdio.h>
-int gcd(int a, int b) {
-    if(b==0) return a;
-    return gcd(b, a%b);
-}
-int main() {
-    printf("%d", gcd(12, 18));
-}
-</pre>
-</div><div class="card">
-<h3>Reverse String</h3>
-<pre>
-#include <stdio.h>
-#include <string.h>
-int main() {
-    char str[100];
-    scanf("%s", str);
-    int len = strlen(str);
-    for(int i=len-1;i>=0;i--)
-        printf("%c", str[i]);
-}
-</pre>
-</div><div class="card">
-<h3>Matrix Addition</h3>
-<pre>
-#include <stdio.h>
-int main() {
-    int a[2][2], b[2][2], c[2][2];
-    for(int i=0;i<2;i++)
-        for(int j=0;j<2;j++)
-            scanf("%d", &a[i][j]);
-    for(int i=0;i<2;i++)
-        for(int j=0;j<2;j++) {
-            scanf("%d", &b[i][j]);
-            c[i][j] = a[i][j] + b[i][j];
-        }
-    for(int i=0;i<2;i++) {
-        for(int j=0;j<2;j++)
-            printf("%d ", c[i][j]);
-        printf("\n");
-    }
-
-}
-</pre>
-</div><div class="card">
-<h3>Armstrong Number</h3>
-<pre>
-    #include <stdio.h>
-int main() {
-    int n, temp, r, sum = 0;
-    scanf("%d", &n);
-    temp = n;
-
-    while(n > 0) {
-        r = n % 10;
-        sum += r*r*r;
-        n /= 10;
-    }
-
-    if(sum == temp)
-        printf("Armstrong");
-    else
-        printf("Not Armstrong");
-}
-</pre>
-    </div><div class="card">
-    <h3>Prime Number</h3>
-        <pre>
-            #include <stdio.h>
-int main() {
-    int n, i, flag = 0;
-    scanf("%d", &n);
-
-    for(i = 2; i <= n/2; i++) {
-        if(n % i == 0) {
-            flag = 1;
-            break;
-        }
-    }
-
-    if(flag == 0 && n != 1)
-        printf("Prime");
-    else
-        printf("Not Prime");
-}
-    </pre>
+<body>
+    <!-- Top Header with Brand -->
+    <div class="top-header">
+        <h1>CodeMitra</h1>
+        <p>Learn Coding Easily</p>
     </div>
-  </stdio.h>  
-        </div><footer>
-    <p>© 2026 CodeMitra</p>
-</footer>
-<!-- Default Statcounter code for raj
-https://rajdesai1812-wq.github.io -->
-<script type="text/javascript">
-var sc_project=13221579; 
-var sc_invisible=1; 
-var sc_security="9ec2588b"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="Web Analytics
-Made Easy - Statcounter" href="https://statcounter.com/"
-target="_blank"><img class="statcounter"
-src="https://c.statcounter.com/13221579/0/9ec2588b/1/"
-alt="Web Analytics Made Easy - Statcounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code --> 
-        </body>
+ 
+    <!-- Navigation -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#c-programs">C Programs</a>
+        <a href="#python">Python</a>
+        <a href="#contact">Contact</a>
+    </div>
+ 
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search programs...">
+    </div>
+ 
+    <div class="container">
+        <header>
+            <h1>{ Advanced C }</h1>
+            <p class="subtitle">Programming Concepts & Algorithms</p>
+        </header>
+ 
+        <div class="grid">
+            <!-- Card 1: Palindrome -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>🔄 Palindrome Check</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check if a number is palindrome</span>
+<span class="keyword">int</span> n, rev = <span class="number">0</span>, temp;
+<span class="keyword">scanf</span>(<span class="string">"%d"</span>, &n);
+temp = n;
+ 
+<span class="keyword">while</span>(n != <span class="number">0</span>) {
+  rev = rev * <span class="number">10</span> + n % <span class="number">10</span>;
+  n /= <span class="number">10</span>;
+}
+ 
+<span class="keyword">if</span>(temp == rev)
+  <span class="keyword">printf</span>(<span class="string">"Palindrome"</span>);
+<span class="keyword">else</span>
+  <span class="keyword">printf</span>(<span class="string">"Not Palindrome"</span>);</code></pre>
+                <p class="description">Reverses a number and compares with original. O(log n) time complexity where n is the number of digits.</p>
+            </div>
+ 
+            <!-- Card 2: Fibonacci -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>⚡ Fibonacci Recursion</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Recursive Fibonacci Series</span>
+<span class="keyword">int</span> fib(<span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n <= <span class="number">1</span>)
+    <span class="keyword">return</span> n;
+  <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>);
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">10</span>; i++)
+    <span class="keyword">printf</span>(<span class="string">"%d "</span>, fib(i));
+  <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <p class="description">Classic recursive approach. Elegant but inefficient with O(2^n) complexity. Use memoization for optimization.</p>
+            </div>
+ 
+            <!-- Card 3: Binary Search -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>🔍 Binary Search</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Binary search in sorted array</span>
+<span class="keyword">int</span> binarySearch(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> target) {
+  <span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;
+  
+  <span class="keyword">while</span>(left <= right) {
+    <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;
+    
+    <span class="keyword">if</span>(arr[mid] == target)
+      <span class="keyword">return</span> mid;
+    <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] < target)
+      left = mid + <span class="number">1</span>;
+    <span class="keyword">else</span>
+      right = mid - <span class="number">1</span>;
+  }
+  <span class="keyword">return</span> -<span class="number">1</span>;
+}</code></pre>
+                <p class="description">Efficiently searches sorted arrays. O(log n) time complexity. Requires array to be sorted beforehand.</p>
+            </div>
+ 
+            <!-- Card 4: Bubble Sort -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>🫧 Bubble Sort</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Simple sorting algorithm</span>
+<span class="keyword">void</span> bubbleSort(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n) {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n - <span class="number">1</span>; i++) {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j < n - i - <span class="number">1</span>; j++) {
+      <span class="keyword">if</span>(arr[j] > arr[j + <span class="number">1</span>]) {
+        <span class="keyword">int</span> temp = arr[j];
+        arr[j] = arr[j + <span class="number">1</span>];
+        arr[j + <span class="number">1</span>] = temp;
+      }
+    }
+  }
+}</code></pre>
+                <p class="description">Elementary sorting by repeatedly comparing adjacent elements. O(n²) complexity. Good for learning, not for large datasets.</p>
+            </div>
+ 
+            <!-- Card 5: Factorial -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>! Factorial (Dynamic)</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Efficient factorial with memoization</span>
+<span class="keyword">long</span> <span class="keyword">long</span> factorial(<span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n == <span class="number">0</span> || n == <span class="number">1</span>)
+    <span class="keyword">return</span> <span class="number">1</span>;
+  
+  <span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">1</span>;
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i <= n; i++)
+    result *= i;
+  
+  <span class="keyword">return</span> result;
+}
+ 
+<span class="comment">// Usage: factorial(10) → 3628800</span></code></pre>
+                <p class="description">Iterative approach avoids stack overflow. O(n) time complexity. Use long long for larger values to prevent overflow.</p>
+            </div>
+ 
+            <!-- Card 6: Prime Check -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>✨ Prime Number Check</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Optimized prime checker</span>
+<span class="keyword">int</span> isPrime(<span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n <= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;
+  <span class="keyword">if</span>(n <= <span class="number">3</span>) <span class="keyword">return</span> <span class="number">1</span>;
+  <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span> || n % <span class="number">3</span> == <span class="number">0</span>)
+    <span class="keyword">return</span> <span class="number">0</span>;
+  
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">5</span>; i * i <= n; i += <span class="number">6</span>)
+    <span class="keyword">if</span>(n % i == <span class="number">0</span> || n % (i + <span class="number">2</span>) == <span class="number">0</span>)
+      <span class="keyword">return</span> <span class="number">0</span>;
+  
+  <span class="keyword">return</span> <span class="number">1</span>;
+}</code></pre>
+                <p class="description">Checks divisibility only up to √n. O(√n) complexity. 6k±1 optimization reduces operations significantly.</p>
+            </div>
+        </div>
+ 
+        <div class="divider"></div>
+ 
+        <footer>
+            <p>📚 Advanced Programming Concepts | C Language Algorithms & Data Structures</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Master these fundamentals for better problem-solving and optimization skills</p>
+        </footer>
+    </div>
+ 
+    <script>
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        const codeCards = document.querySelectorAll('.code-card');
+ 
+        if (searchBox) {
+            searchBox.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+ 
+                codeCards.forEach(card => {
+                    const title = card.querySelector('.code-title').textContent.toLowerCase();
+                    const description = card.querySelector('.description').textContent.toLowerCase();
+ 
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || searchTerm === '') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
 </html>

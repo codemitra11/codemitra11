@@ -137,7 +137,7 @@ int main() {
     </div><div class="card">
     <h3>Prime Number</h3>
         <pre>
-            #include <stdio.h>
+  #include <stdio.h>
 int main() {
     int n, i, flag = 0;
     scanf("%d", &n);
@@ -155,7 +155,47 @@ int main() {
         printf("Not Prime");
 }
     </pre>
-    </div>
+    </div><div class="card">
+     <h3>Bubble Sort</h3>
+     <pre>
+ #include <stdio.h>
+int main() {
+    int arr[5], i, j, temp;
+
+    for(i=0;i<5;i++)
+        scanf("%d",&arr[i]);
+
+    for(i=0;i<5;i++) {
+        for(j=0;j<5-i-1;j++) {
+            if(arr[j] > arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+
+    for(i=0;i<5;i++)
+        printf("%d ", arr[i]);
+}
+     </pre></div>
+     <div class="card">
+      <h3> String Length (Without Function)</h3>
+      <pre>
+ #include <stdio.h>
+int main() {
+    char str[100];
+    int i=0;
+
+    scanf("%s", str);
+
+    while(str[i] != '\0') {
+        i++;
+    }
+
+    printf("Length = %d", i);
+}
+      </pre></div>
   </stdio.h>  
         </div><footer>
     <p>© 2026 CodeMitra</p>

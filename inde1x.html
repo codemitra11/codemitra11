@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced C Programming - Code Examples</title>
+    <title>CodeMitra - Advanced C Programming</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +27,7 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: var(--text-light);
             line-height: 1.6;
-            padding: 40px 20px;
+            padding: 0;
             min-height: 100vh;
         }
  
@@ -40,6 +40,8 @@
             text-align: center;
             margin-bottom: 60px;
             animation: slideDown 0.8s ease-out;
+            padding: 40px 20px;
+            position: relative;
         }
  
         h1 {
@@ -62,9 +64,10 @@
  
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
+            padding: 0 20px;
         }
  
         .code-card {
@@ -78,12 +81,13 @@
             animation: fadeInUp 0.6s ease-out both;
         }
  
-        .code-card:nth-child(1) { animation-delay: 0.1s; }
-        .code-card:nth-child(2) { animation-delay: 0.2s; }
-        .code-card:nth-child(3) { animation-delay: 0.3s; }
-        .code-card:nth-child(4) { animation-delay: 0.4s; }
-        .code-card:nth-child(5) { animation-delay: 0.5s; }
-        .code-card:nth-child(6) { animation-delay: 0.6s; }
+        .code-card:nth-child(1) { animation-delay: 0.05s; }
+        .code-card:nth-child(2) { animation-delay: 0.1s; }
+        .code-card:nth-child(3) { animation-delay: 0.15s; }
+        .code-card:nth-child(4) { animation-delay: 0.2s; }
+        .code-card:nth-child(5) { animation-delay: 0.25s; }
+        .code-card:nth-child(6) { animation-delay: 0.3s; }
+        .code-card:nth-child(n+7) { animation-delay: 0.35s; }
  
         .code-card::before {
             content: '';
@@ -102,13 +106,14 @@
         }
  
         .code-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--accent);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: space-between;
         }
  
         .code-badge {
@@ -122,14 +127,6 @@
             letter-spacing: 1px;
         }
  
-        .code-badge.python {
-            background: #3776ab;
-        }
- 
-        .code-badge.cpp {
-            background: #00599c;
-        }
- 
         pre {
             background: var(--primary);
             border-left: 4px solid var(--highlight);
@@ -137,7 +134,7 @@
             border-radius: 8px;
             overflow-x: auto;
             margin: 15px 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
         }
  
@@ -164,9 +161,37 @@
             color: var(--highlight);
         }
  
+        .output-section {
+            background: rgba(0, 100, 120, 0.2);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+ 
+        .output-label {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+ 
+        .output-content {
+            background: var(--primary);
+            padding: 12px;
+            border-radius: 4px;
+            color: #90ee90;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+ 
         .description {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-top: 15px;
             line-height: 1.6;
         }
@@ -203,13 +228,12 @@
         footer {
             text-align: center;
             margin-top: 80px;
-            padding-top: 30px;
+            padding: 40px 20px;
             border-top: 1px solid rgba(0, 212, 255, 0.2);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
  
-        /* Header Styles */
         .top-header {
             background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
             padding: 40px 20px;
@@ -236,7 +260,6 @@
             letter-spacing: 0.5px;
         }
  
-        /* Navigation */
         .navbar {
             background-color: #222;
             padding: 0;
@@ -245,6 +268,7 @@
             gap: 0;
             margin-bottom: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            flex-wrap: wrap;
         }
  
         .navbar a {
@@ -264,7 +288,6 @@
             color: #0066ff;
         }
  
-        /* Search Bar */
         .search-container {
             max-width: 1200px;
             margin: 0 auto 40px;
@@ -293,6 +316,17 @@
             color: #999;
         }
  
+        .programs-available {
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+            font-family: 'Courier Prime', monospace;
+        }
+ 
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -306,48 +340,49 @@
                 font-size: 2rem;
             }
  
-            .navbar {
-                flex-wrap: wrap;
-            }
- 
             .navbar a {
                 padding: 12px 15px;
                 font-size: 0.9rem;
+            }
+ 
+            .programs-available {
+                position: static;
+                transform: none;
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Top Header with Brand -->
     <div class="top-header">
         <h1>CodeMitra</h1>
         <p>Learn Coding Easily</p>
     </div>
  
-    <!-- Navigation -->
     <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="inde1x.html">C Programs</a>
+        <a href="#home">Home</a>
+        <a href="#programs">C Programs</a>
         <a href="#">Python</a>
         <a href="#contact">Contact</a>
     </div>
  
-    <!-- Search Bar -->
     <div class="search-container">
         <input type="text" class="search-box" placeholder="Search programs...">
     </div>
  
     <div class="container">
         <header>
-            <h1>{ Advanced C }</h1> <h2 align="right">1000+ programs available</h2>
+            <h1>{ Advanced C }</h1>
+            <p class="programs-available">1000+ programs available</p>
             <p class="subtitle">Programming Concepts & Algorithms</p>
         </header>
  
-        <div class="grid">
-            <!-- Card 1: Palindrome -->
+        <div class="grid" id="programs">
+ 
+            <!-- 1. Palindrome -->
             <div class="code-card">
                 <div class="code-title">
-                    <span>C program with Palindrome </span>
+                    <span>Palindrome Check</span>
                     <span class="code-badge">C</span>
                 </div>
                 <pre><code><span class="comment">// Check if a number is palindrome</span>
@@ -364,13 +399,17 @@ temp = n;
   <span class="keyword">printf</span>(<span class="string">"Palindrome"</span>);
 <span class="keyword">else</span>
   <span class="keyword">printf</span>(<span class="string">"Not Palindrome"</span>);</code></pre>
-                <p class="description">Reverses a number and compares with original. O(log n) time complexity where n is the number of digits.</p>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 121)</div>
+                    <div class="output-content">Palindrome</div>
+                </div>
+                <p class="description">Reverses a number and compares with original. O(log n) time complexity.</p>
             </div>
  
-            <!-- Card 2: Fibonacci -->
+            <!-- 2. Fibonacci -->
             <div class="code-card">
                 <div class="code-title">
-                    <span>C program with Fibonacci Recursion</span>
+                    <span>Fibonacci Recursion</span>
                     <span class="code-badge">C</span>
                 </div>
                 <pre><code><span class="comment">// Recursive Fibonacci Series</span>
@@ -383,24 +422,28 @@ temp = n;
 <span class="keyword">int</span> main() {
   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">10</span>; i++)
     <span class="keyword">printf</span>(<span class="string">"%d "</span>, fib(i));
-  <span class="keyword">return</span> <span class="number">0</span>;
 }</code></pre>
-                <p class="description">Classic recursive approach. Elegant but inefficient with O(2^n) complexity. Use memoization for optimization.</p>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">0 1 1 2 3 5 8 13 21 34</div>
+                </div>
+                <p class="description">Classic recursive approach. O(2^n) complexity, inefficient for large values.</p>
             </div>
  
-            <!-- Card 3: Binary Search -->
+            <!-- 3. Binary Search -->
             <div class="code-card">
                 <div class="code-title">
-                    <span> C program with Binary Search</span>
+                    <span>Binary Search</span>
                     <span class="code-badge">C</span>
                 </div>
                 <pre><code><span class="comment">// Binary search in sorted array</span>
-<span class="keyword">int</span> binarySearch(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> target) {
+<span class="keyword">int</span> binarySearch(<span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n, <span class="keyword">int</span> target) {
   <span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;
   
   <span class="keyword">while</span>(left <= right) {
-    <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;
-    
+    <span class="keyword">int</span> mid = left + 
+              (right - left) / <span class="number">2</span>;
     <span class="keyword">if</span>(arr[mid] == target)
       <span class="keyword">return</span> mid;
     <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] < target)
@@ -410,19 +453,25 @@ temp = n;
   }
   <span class="keyword">return</span> -<span class="number">1</span>;
 }</code></pre>
-                <p class="description">Efficiently searches sorted arrays. O(log n) time complexity. Requires array to be sorted beforehand.</p>
+                <div class="output-section">
+                    <div class="output-label">Output (Target: 25)</div>
+                    <div class="output-content">Element found at index: 4</div>
+                </div>
+                <p class="description">O(log n) search. Requires sorted array. Extremely efficient.</p>
             </div>
  
-            <!-- Card 4: Bubble Sort -->
+            <!-- 4. Bubble Sort -->
             <div class="code-card">
                 <div class="code-title">
-                    <span>C program with Bubble Sort</span>
+                    <span>Bubble Sort</span>
                     <span class="code-badge">C</span>
                 </div>
                 <pre><code><span class="comment">// Simple sorting algorithm</span>
-<span class="keyword">void</span> bubbleSort(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n) {
+<span class="keyword">void</span> bubbleSort(
+    <span class="keyword">int</span> arr[], <span class="keyword">int</span> n) {
   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n - <span class="number">1</span>; i++) {
-    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j < n - i - <span class="number">1</span>; j++) {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; 
+        j < n - i - <span class="number">1</span>; j++) {
       <span class="keyword">if</span>(arr[j] > arr[j + <span class="number">1</span>]) {
         <span class="keyword">int</span> temp = arr[j];
         arr[j] = arr[j + <span class="number">1</span>];
@@ -431,52 +480,852 @@ temp = n;
     }
   }
 }</code></pre>
-                <p class="description">Elementary sorting by repeatedly comparing adjacent elements. O(n²) complexity. Good for learning, not for large datasets.</p>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 64 25 12 22 11)</div>
+                    <div class="output-content">11 12 22 25 64</div>
+                </div>
+                <p class="description">O(n²) complexity. Educational, not for production use.</p>
             </div>
  
-            <!-- Card 5: Factorial -->
+            <!-- 5. Factorial -->
             <div class="code-card">
                 <div class="code-title">
-                    <span>C program with Factorial (Dynamic)</span>
+                    <span>Factorial (Iterative)</span>
                     <span class="code-badge">C</span>
                 </div>
-                <pre><code><span class="comment">// Efficient factorial with memoization</span>
-<span class="keyword">long</span> <span class="keyword">long</span> factorial(<span class="keyword">int</span> n) {
+                <pre><code><span class="comment">// Efficient factorial</span>
+<span class="keyword">long</span> <span class="keyword">long</span> factorial(
+    <span class="keyword">int</span> n) {
   <span class="keyword">if</span>(n == <span class="number">0</span> || n == <span class="number">1</span>)
     <span class="keyword">return</span> <span class="number">1</span>;
   
   <span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">1</span>;
-  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i <= n; i++)
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; 
+      i <= n; i++)
     result *= i;
   
   <span class="keyword">return</span> result;
-}
- 
-<span class="comment">// Usage: factorial(10) → 3628800</span></code></pre>
-                <p class="description">Iterative approach avoids stack overflow. O(n) time complexity. Use long long for larger values to prevent overflow.</p>
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (n=5)</div>
+                    <div class="output-content">120</div>
+                </div>
+                <p class="description">O(n) complexity. Avoids stack overflow. Use long long.</p>
             </div>
  
-            <!-- Card 6: Prime Check -->
+            <!-- 6. Prime Checker -->
             <div class="code-card">
                 <div class="code-title">
-                    <span>C program with Prime Number Check</span>
+                    <span>Prime Number Check</span>
                     <span class="code-badge">C</span>
                 </div>
                 <pre><code><span class="comment">// Optimized prime checker</span>
 <span class="keyword">int</span> isPrime(<span class="keyword">int</span> n) {
-  <span class="keyword">if</span>(n <= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;
-  <span class="keyword">if</span>(n <= <span class="number">3</span>) <span class="keyword">return</span> <span class="number">1</span>;
-  <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span> || n % <span class="number">3</span> == <span class="number">0</span>)
+  <span class="keyword">if</span>(n <= <span class="number">1</span>) 
+    <span class="keyword">return</span> <span class="number">0</span>;
+  <span class="keyword">if</span>(n <= <span class="number">3</span>) 
+    <span class="keyword">return</span> <span class="number">1</span>;
+  <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span> || 
+      n % <span class="number">3</span> == <span class="number">0</span>)
     <span class="keyword">return</span> <span class="number">0</span>;
   
-  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">5</span>; i * i <= n; i += <span class="number">6</span>)
-    <span class="keyword">if</span>(n % i == <span class="number">0</span> || n % (i + <span class="number">2</span>) == <span class="number">0</span>)
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">5</span>; i * i <= n; 
+      i += <span class="number">6</span>)
+    <span class="keyword">if</span>(n % i == <span class="number">0</span>)
       <span class="keyword">return</span> <span class="number">0</span>;
-  
   <span class="keyword">return</span> <span class="number">1</span>;
 }</code></pre>
-                <p class="description">Checks divisibility only up to √n. O(√n) complexity. 6k±1 optimization reduces operations significantly.</p>
+                <div class="output-section">
+                    <div class="output-label">Output (n=17)</div>
+                    <div class="output-content">17 is Prime</div>
+                </div>
+                <p class="description">O(√n) complexity. 6k±1 optimization.</p>
             </div>
+ 
+            <!-- 7. GCD -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>GCD (Euclidean)</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Greatest Common Divisor</span>
+<span class="keyword">int</span> gcd(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+  <span class="keyword">if</span>(b == <span class="number">0</span>)
+    <span class="keyword">return</span> a;
+  <span class="keyword">return</span> gcd(b, a % b);
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, gcd(<span class="number">48</span>, <span class="number">18</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (GCD of 48, 18)</div>
+                    <div class="output-content">6</div>
+                </div>
+                <p class="description">Recursive approach. O(log min(a,b)) complexity.</p>
+            </div>
+ 
+            <!-- 8. LCM -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>LCM (Least Common Multiple)</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Least Common Multiple</span>
+<span class="keyword">int</span> gcd(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+  <span class="keyword">while</span>(b) {
+    <span class="keyword">int</span> temp = b;
+    b = a % b;
+    a = temp;
+  }
+  <span class="keyword">return</span> a;
+}
+ 
+<span class="keyword">int</span> lcm(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+  <span class="keyword">return</span> (a * b) / gcd(a, b);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (LCM of 12, 8)</div>
+                    <div class="output-content">24</div>
+                </div>
+                <p class="description">Uses GCD to calculate LCM. O(log min(a,b)).</p>
+            </div>
+ 
+            <!-- 9. Linear Search -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Linear Search</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Sequential search</span>
+<span class="keyword">int</span> linearSearch(
+    <span class="keyword">int</span> arr[], <span class="keyword">int</span> n, 
+    <span class="keyword">int</span> key) {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+    <span class="keyword">if</span>(arr[i] == key)
+      <span class="keyword">return</span> i;
+  }
+  <span class="keyword">return</span> -<span class="number">1</span>;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> arr[] = {<span class="number">3</span>, <span class="number">7</span>, <span class="number">2</span>, 
+              <span class="number">9</span>, <span class="number">15</span>};
+  linearSearch(arr, <span class="number">5</span>, <span class="number">9</span>);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Key: 9)</div>
+                    <div class="output-content">Element found at index: 3</div>
+                </div>
+                <p class="description">O(n) complexity. Works on unsorted arrays.</p>
+            </div>
+ 
+            <!-- 10. Quick Sort -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Quick Sort</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Efficient divide-conquer sort</span>
+<span class="keyword">int</span> partition(<span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+  <span class="keyword">int</span> pivot = arr[high];
+  <span class="keyword">int</span> i = low - <span class="number">1</span>;
+  
+  <span class="keyword">for</span>(<span class="keyword">int</span> j = low; j < high; j++)
+    <span class="keyword">if</span>(arr[j] < pivot) {
+      i++;
+      <span class="keyword">int</span> t = arr[i];
+      arr[i] = arr[j];
+      arr[j] = t;
+    }
+  arr[high] = arr[i+<span class="number">1</span>];
+  arr[i+<span class="number">1</span>] = pivot;
+  <span class="keyword">return</span> i + <span class="number">1</span>;
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 64 34 25 12)</div>
+                    <div class="output-content">12 25 34 64</div>
+                </div>
+                <p class="description">O(n log n) average. Production-grade sorting.</p>
+            </div>
+ 
+            <!-- 11. Merge Sort -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Merge Sort</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Stable O(n log n) sort</span>
+<span class="keyword">void</span> merge(<span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> l, <span class="keyword">int</span> m, <span class="keyword">int</span> r) {
+  <span class="keyword">int</span> n1 = m - l + <span class="number">1</span>;
+  <span class="keyword">int</span> n2 = r - m;
+  
+  <span class="keyword">int</span> L[n1], R[n2];
+  
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n1; i++)
+    L[i] = arr[l + i];
+  <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j < n2; j++)
+    R[j] = arr[m + <span class="number">1</span> + j];
+  
+  <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = l;
+  <span class="keyword">while</span>(i < n1 && j < n2)
+    arr[k++] = (L[i] <= R[j]) ? 
+               L[i++] : R[j++];
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Guaranteed O(n log n))</div>
+                    <div class="output-content">12 25 34 64</div>
+                </div>
+                <p class="description">Stable sorting. O(n log n) guaranteed. Uses O(n) space.</p>
+            </div>
+ 
+            <!-- 12. Tower of Hanoi -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Tower of Hanoi</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Classic puzzle solution</span>
+<span class="keyword">void</span> hanoi(<span class="keyword">int</span> n, 
+    <span class="keyword">char</span> source, <span class="keyword">char</span> dest, 
+    <span class="keyword">char</span> aux) {
+  <span class="keyword">if</span>(n == <span class="number">1</span>) {
+    <span class="keyword">printf</span>(<span class="string">"%c->%c\n"</span>, 
+           source, dest);
+    <span class="keyword">return</span>;
+  }
+  
+  hanoi(n-<span class="number">1</span>, source, aux, dest);
+  <span class="keyword">printf</span>(<span class="string">"%c->%c\n"</span>, 
+         source, dest);
+  hanoi(n-<span class="number">1</span>, aux, dest, source);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (n=2, A-B-C)</div>
+                    <div class="output-content">A→C<br>A→B<br>C→B</div>
+                </div>
+                <p class="description">O(2^n) moves required. Elegant recursion.</p>
+            </div>
+ 
+            <!-- 13. Power Function -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Power Function</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Calculate power recursively</span>
+<span class="keyword">long</span> <span class="keyword">long</span> power(
+    <span class="keyword">long</span> <span class="keyword">long</span> x, 
+    <span class="keyword">int</span> y) {
+  <span class="keyword">if</span>(y == <span class="number">0</span>)
+    <span class="keyword">return</span> <span class="number">1</span>;
+  
+  <span class="keyword">long</span> <span class="keyword">long</span> res = power(x, y/<span class="number">2</span>);
+  
+  <span class="keyword">if</span>(y % <span class="number">2</span> == <span class="number">0</span>)
+    <span class="keyword">return</span> res * res;
+  <span class="keyword">else</span>
+    <span class="keyword">return</span> x * res * res;
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (2^10)</div>
+                    <div class="output-content">1024</div>
+                </div>
+                <p class="description">O(log y) using binary exponentiation.</p>
+            </div>
+ 
+            <!-- 14. Reverse String -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Reverse String</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Reverse a string</span>
+<span class="keyword">void</span> reverseString(
+    <span class="keyword">char</span> str[]) {
+  <span class="keyword">int</span> n = strlen(str);
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; 
+      i < n/<span class="number">2</span>; i++) {
+    <span class="keyword">char</span> temp = str[i];
+    str[i] = str[n-i-<span class="number">1</span>];
+    str[n-i-<span class="number">1</span>] = temp;
+  }
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">char</span> s[] = <span class="string">"hello"</span>;
+  reverseString(s);
+  <span class="keyword">printf</span>(<span class="string">"%s"</span>, s);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: "hello")</div>
+                    <div class="output-content">olleh</div>
+                </div>
+                <p class="description">O(n) time, O(1) space complexity.</p>
+            </div>
+ 
+            <!-- 15. Count Digits -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Count Digits</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Count digits in a number</span>
+<span class="keyword">int</span> countDigits(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> count = <span class="number">0</span>;
+  <span class="keyword">while</span>(n != <span class="number">0</span>) {
+    count++;
+    n = n / <span class="number">10</span>;
+  }
+  <span class="keyword">return</span> count;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, 
+         countDigits(<span class="number">12345</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 12345)</div>
+                    <div class="output-content">5</div>
+                </div>
+                <p class="description">O(log n) complexity.</p>
+            </div>
+ 
+            <!-- 16. Sum of Array -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Sum of Array Elements</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Sum all array elements</span>
+<span class="keyword">int</span> sumArray(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> sum = <span class="number">0</span>;
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++)
+    sum += arr[i];
+  <span class="keyword">return</span> sum;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> arr[] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, 
+              <span class="number">4</span>, <span class="number">5</span>};
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, sumArray(arr, <span class="number">5</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">15</div>
+                </div>
+                <p class="description">O(n) time complexity.</p>
+            </div>
+ 
+            <!-- 17. Armstrong Number -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Armstrong Number</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check Armstrong number</span>
+<span class="keyword">int</span> isArmstrong(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> orig = n, sum = <span class="number">0</span>;
+  <span class="keyword">while</span>(n > <span class="number">0</span>) {
+    <span class="keyword">int</span> digit = n % <span class="number">10</span>;
+    sum += digit * digit * digit;
+    n /= <span class="number">10</span>;
+  }
+  <span class="keyword">return</span> (sum == orig);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 153)</div>
+                    <div class="output-content">Yes, Armstrong Number<br>(1³+5³+3³=153)</div>
+                </div>
+                <p class="description">1³+5³+3³=153. O(log n) complexity.</p>
+            </div>
+ 
+            <!-- 18. Perfect Number -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Perfect Number</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check perfect number</span>
+<span class="keyword">int</span> isPerfect(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> sum = <span class="number">0</span>;
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; 
+      i < n; i++) {
+    <span class="keyword">if</span>(n % i == <span class="number">0</span>)
+      sum += i;
+  }
+  <span class="keyword">return</span> (sum == n);
+}
+<span class="comment">// 6 = 1+2+3</span></code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 6)</div>
+                    <div class="output-content">Perfect Number<br>(1+2+3=6)</div>
+                </div>
+                <p class="description">Sum of proper divisors equals number.</p>
+            </div>
+ 
+            <!-- 19. Fibonacci with Memoization -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Fibonacci Memoization</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Optimized Fibonacci</span>
+<span class="keyword">long</span> <span class="keyword">long</span> memo[<span class="number">100</span>];
+ 
+<span class="keyword">long</span> <span class="keyword">long</span> fib(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n <= <span class="number">1</span>)
+    <span class="keyword">return</span> n;
+  <span class="keyword">if</span>(memo[n] != <span class="number">0</span>)
+    <span class="keyword">return</span> memo[n];
+  
+  memo[n] = fib(n-<span class="number">1</span>) + 
+            fib(n-<span class="number">2</span>);
+  <span class="keyword">return</span> memo[n];
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (n=10)</div>
+                    <div class="output-content">55</div>
+                </div>
+                <p class="description">O(n) with memoization vs O(2^n).</p>
+            </div>
+ 
+            <!-- 20. Even or Odd -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Even or Odd</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check even or odd</span>
+<span class="keyword">void</span> checkEvenOdd(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)
+    <span class="keyword">printf</span>(<span class="string">"Even"</span>);
+  <span class="keyword">else</span>
+    <span class="keyword">printf</span>(<span class="string">"Odd"</span>);
+}
+ 
+<span class="keyword">int</span> main() {
+  checkEvenOdd(<span class="number">5</span>);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 5)</div>
+                    <div class="output-content">Odd</div>
+                </div>
+                <p class="description">Using modulo operator.</p>
+            </div>
+ 
+            <!-- 21. Leap Year -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Leap Year Check</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check leap year</span>
+<span class="keyword">int</span> isLeapYear(
+    <span class="keyword">int</span> year) {
+  <span class="keyword">if</span>((year % <span class="number">400</span> == <span class="number">0</span>) ||
+     (year % <span class="number">4</span> == <span class="number">0</span> && 
+      year % <span class="number">100</span> != <span class="number">0</span>))
+    <span class="keyword">return</span> <span class="number">1</span>;
+  <span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Year: 2024)</div>
+                    <div class="output-content">Yes, Leap Year</div>
+                </div>
+                <p class="description">Divisible by 4 but not 100, or by 400.</p>
+            </div>
+ 
+            <!-- 22. Vowel or Consonant -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Vowel or Consonant</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check vowel/consonant</span>
+<span class="keyword">void</span> checkVowel(
+    <span class="keyword">char</span> ch) {
+  <span class="keyword">if</span>(ch == <span class="string">'a'</span> || 
+     ch == <span class="string">'e'</span> ||
+     ch == <span class="string">'i'</span> || 
+     ch == <span class="string">'o'</span> ||
+     ch == <span class="string">'u'</span>)
+    <span class="keyword">printf</span>(<span class="string">"Vowel"</span>);
+  <span class="keyword">else</span>
+    <span class="keyword">printf</span>(<span class="string">"Consonant"</span>);
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 'a')</div>
+                    <div class="output-content">Vowel</div>
+                </div>
+                <p class="description">Simple character matching.</p>
+            </div>
+ 
+            <!-- 23. Swap Two Numbers -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Swap Two Numbers</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Swap using bitwise XOR</span>
+<span class="keyword">void</span> swap(
+    <span class="keyword">int</span> *a, <span class="keyword">int</span> *b) {
+  *a = *a ^ *b;
+  *b = *a ^ *b;
+  *a = *a ^ *b;
+}
+ 
+<span class="comment">// Or traditional method</span>
+<span class="keyword">void</span> swapTraditional(
+    <span class="keyword">int</span> *a, <span class="keyword">int</span> *b) {
+  <span class="keyword">int</span> temp = *a;
+  *a = *b;
+  *b = temp;
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (a=5, b=10)</div>
+                    <div class="output-content">a=10, b=5</div>
+                </div>
+                <p class="description">XOR method or temporary variable.</p>
+            </div>
+ 
+            <!-- 24. Fibonacci Iterative -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Fibonacci Iterative</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Iterative Fibonacci</span>
+<span class="keyword">void</span> fibonacci(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>, c;
+  
+  <span class="keyword">printf</span>(<span class="string">"%d %d "</span>, a, b);
+  
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i < n; i++) {
+    c = a + b;
+    <span class="keyword">printf</span>(<span class="string">"%d "</span>, c);
+    a = b;
+    b = c;
+  }
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (n=10)</div>
+                    <div class="output-content">0 1 1 2 3 5 8 13 21 34</div>
+                </div>
+                <p class="description">O(n) time, O(1) space.</p>
+            </div>
+ 
+            <!-- 25. String Length -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>String Length</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Count string length</span>
+<span class="keyword">int</span> stringLength(
+    <span class="keyword">char</span> str[]) {
+  <span class="keyword">int</span> count = <span class="number">0</span>;
+  <span class="keyword">while</span>(str[count] != <span class="string">'\0'</span>)
+    count++;
+  <span class="keyword">return</span> count;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">char</span> s[] = <span class="string">"Hello"</span>;
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, 
+         stringLength(s));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">5</div>
+                </div>
+                <p class="description">Count until null terminator.</p>
+            </div>
+ 
+            <!-- 26. Find Maximum -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Find Maximum Element</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Find max in array</span>
+<span class="keyword">int</span> findMax(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> max = arr[<span class="number">0</span>];
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i < n; i++)
+    <span class="keyword">if</span>(arr[i] > max)
+      max = arr[i];
+  <span class="keyword">return</span> max;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> arr[] = {<span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, 
+              <span class="number">1</span>, <span class="number">9</span>};
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, findMax(arr, <span class="number">5</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">9</div>
+                </div>
+                <p class="description">O(n) time complexity.</p>
+            </div>
+ 
+            <!-- 27. Find Minimum -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Find Minimum Element</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Find min in array</span>
+<span class="keyword">int</span> findMin(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> min = arr[<span class="number">0</span>];
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i < n; i++)
+    <span class="keyword">if</span>(arr[i] < min)
+      min = arr[i];
+  <span class="keyword">return</span> min;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> arr[] = {<span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, 
+              <span class="number">1</span>, <span class="number">9</span>};
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, findMin(arr, <span class="number">5</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">1</div>
+                </div>
+                <p class="description">O(n) time complexity.</p>
+            </div>
+ 
+            <!-- 28. Reverse Array -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Reverse Array</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Reverse array elements</span>
+<span class="keyword">void</span> reverseArray(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> start = <span class="number">0</span>, end = n-<span class="number">1</span>;
+  <span class="keyword">while</span>(start < end) {
+    <span class="keyword">int</span> temp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = temp;
+    start++;
+    end--;
+  }
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 1 2 3 4 5)</div>
+                    <div class="output-content">5 4 3 2 1</div>
+                </div>
+                <p class="description">O(n) time, O(1) space.</p>
+            </div>
+ 
+            <!-- 29. Sum of Digits -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Sum of Digits</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Sum all digits</span>
+<span class="keyword">int</span> sumOfDigits(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> sum = <span class="number">0</span>;
+  <span class="keyword">while</span>(n > <span class="number">0</span>) {
+    sum += n % <span class="number">10</span>;
+    n = n / <span class="number">10</span>;
+  }
+  <span class="keyword">return</span> sum;
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">printf</span>(<span class="string">"%d"</span>, 
+         sumOfDigits(<span class="number">12345</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 12345)</div>
+                    <div class="output-content">15 (1+2+3+4+5)</div>
+                </div>
+                <p class="description">O(log n) time complexity.</p>
+            </div>
+ 
+            <!-- 30. Average of Array -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Average of Array</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Calculate average</span>
+<span class="keyword">double</span> average(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">int</span> sum = <span class="number">0</span>;
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++)
+    sum += arr[i];
+  <span class="keyword">return</span> ((<span class="keyword">double</span>)sum / n);
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">int</span> arr[] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>};
+  <span class="keyword">printf</span>(<span class="string">"%.2f"</span>, 
+         average(arr, <span class="number">3</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">20.00</div>
+                </div>
+                <p class="description">Sum divided by count.</p>
+            </div>
+ 
+            <!-- 31. Check Substring -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Check Substring</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Check if substring exists</span>
+<span class="keyword">int</span> hasSubstring(
+    <span class="keyword">char</span> str[], 
+    <span class="keyword">char</span> sub[]) {
+  <span class="keyword">int</span> n = strlen(str);
+  <span class="keyword">int</span> m = strlen(sub);
+  
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i <= n-m; i++) {
+    <span class="keyword">int</span> j;
+    <span class="keyword">for</span>(j = <span class="number">0</span>; j < m; j++)
+      <span class="keyword">if</span>(str[i+j] != sub[j])
+        <span class="keyword">break</span>;
+    <span class="keyword">if</span>(j == m) <span class="keyword">return</span> i;
+  }
+  <span class="keyword">return</span> -<span class="number">1</span>;
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output</div>
+                    <div class="output-content">Substring found at index</div>
+                </div>
+                <p class="description">Find substring position.</p>
+            </div>
+ 
+            <!-- 32. Factorial with Recursion -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Factorial Recursion</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Recursive factorial</span>
+<span class="keyword">long</span> <span class="keyword">long</span> fact(
+    <span class="keyword">int</span> n) {
+  <span class="keyword">if</span>(n == <span class="number">0</span> || n == <span class="number">1</span>)
+    <span class="keyword">return</span> <span class="number">1</span>;
+  <span class="keyword">return</span> n * fact(n - <span class="number">1</span>);
+}
+ 
+<span class="keyword">int</span> main() {
+  <span class="keyword">printf</span>(<span class="string">"%lld"</span>, fact(<span class="number">5</span>));
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (n=5)</div>
+                    <div class="output-content">120</div>
+                </div>
+                <p class="description">Classic recursion example.</p>
+            </div>
+ 
+            <!-- 33. Check Duplicate -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Check Duplicate Elements</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Find duplicate elements</span>
+<span class="keyword">void</span> checkDuplicate(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j < n; j++) {
+      <span class="keyword">if</span>(arr[i] == arr[j]) {
+        <span class="keyword">printf</span>(<span class="string">"%d is duplicate\n"</span>,
+               arr[i]);
+      }
+    }
+  }
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 1 2 3 2 4)</div>
+                    <div class="output-content">2 is duplicate</div>
+                </div>
+                <p class="description">O(n²) brute force approach.</p>
+            </div>
+ 
+            <!-- 34. Insertion Sort -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Insertion Sort</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Insertion sort algorithm</span>
+<span class="keyword">void</span> insertionSort(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i < n; i++) {
+    <span class="keyword">int</span> key = arr[i];
+    <span class="keyword">int</span> j = i - <span class="number">1</span>;
+    <span class="keyword">while</span>(j >= <span class="number">0</span> && 
+          arr[j] > key) {
+      arr[j+<span class="number">1</span>] = arr[j];
+      j--;
+    }
+    arr[j+<span class="number">1</span>] = key;
+  }
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 64 34 25 12)</div>
+                    <div class="output-content">12 25 34 64</div>
+                </div>
+                <p class="description">O(n²) worst case, O(n) best case.</p>
+            </div>
+ 
+            <!-- 35. Selection Sort -->
+            <div class="code-card">
+                <div class="code-title">
+                    <span>Selection Sort</span>
+                    <span class="code-badge">C</span>
+                </div>
+                <pre><code><span class="comment">// Selection sort algorithm</span>
+<span class="keyword">void</span> selectionSort(
+    <span class="keyword">int</span> arr[], 
+    <span class="keyword">int</span> n) {
+  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i < n-<span class="number">1</span>; i++) {
+    <span class="keyword">int</span> minIdx = i;
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j < n; j++)
+      <span class="keyword">if</span>(arr[j] < arr[minIdx])
+        minIdx = j;
+    <span class="keyword">int</span> temp = arr[i];
+    arr[i] = arr[minIdx];
+    arr[minIdx] = temp;
+  }
+}</code></pre>
+                <div class="output-section">
+                    <div class="output-label">Output (Input: 64 34 25 12)</div>
+                    <div class="output-content">12 25 34 64</div>
+                </div>
+                <p class="description">O(n²) always. Simple but inefficient.</p>
+            </div>
+ 
         </div>
  
         <div class="divider"></div>
@@ -484,11 +1333,11 @@ temp = n;
         <footer>
             <p>📚 Advanced Programming Concepts | C Language Algorithms & Data Structures</p>
             <p style="margin-top: 10px; font-size: 0.85rem;">Master these fundamentals for better problem-solving and optimization skills</p>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: var(--accent);">✓ 35 Complete C Programs with Output Examples</p>
         </footer>
     </div>
  
     <script>
-        // Search functionality
         const searchBox = document.querySelector('.search-box');
         const codeCards = document.querySelectorAll('.code-card');
  

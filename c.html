@@ -332,6 +332,114 @@
             color: var(--primary);
         }
  
+        /* Right Sidebar Navigation */
+        .right-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            border-left: 3px solid var(--accent);
+            padding: 30px 0;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-align: center;
+            padding: 0 20px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent-warm);
+            padding-bottom: 15px;
+            margin: 0 20px;
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 20px;
+        }
+
+        .sidebar-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-links a:hover {
+            background: rgba(0, 212, 255, 0.25);
+            border-left-color: var(--accent);
+            color: var(--accent);
+            padding-left: 20px;
+        }
+
+        .sidebar-links a.active {
+            background: rgba(255, 107, 107, 0.2);
+            border-left-color: var(--accent-warm);
+            color: var(--accent-warm);
+        }
+
+        .sidebar-divider {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 10px auto;
+        }
+
+        .sidebar-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Adjust main content for sidebar */
+        body {
+            margin-right: 250px;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 270px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -344,6 +452,24 @@
             }
             .category-title {
                 font-size: 1.5rem;
+            }
+            
+            /* Hide sidebar on mobile */
+            .right-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-left: none;
+                border-top: 3px solid var(--accent);
+                margin-top: 30px;
+            }
+            
+            body {
+                margin-right: 0;
+            }
+            
+            .scroll-to-top {
+                right: 30px;
             }
         }
     </style>
@@ -369,8 +495,58 @@
         <input type="text" class="search-box" placeholder="Search programs...">
     </div>
  
+    <!-- Right Sidebar Navigation -->
+    <div class="right-sidebar">
+        <div class="sidebar-title">📚 Navigation</div>
+        <div class="sidebar-links">
+            <a href="#home" class="sidebar-nav-link active">
+                <span class="sidebar-icon">🏠</span>Home
+            </a>
+            <a href="#about" class="sidebar-nav-link">
+                <span class="sidebar-icon">ℹ️</span>About
+            </a>
+            <a href="#python" class="sidebar-nav-link">
+                <span class="sidebar-icon">🐍</span>Python
+            </a>
+            <a href="#contact" class="sidebar-nav-link">
+                <span class="sidebar-icon">📧</span>Contact
+            </a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-title">Categories</div>
+        <div class="sidebar-links">
+            <a href="#basics" class="category-link">
+                <span class="sidebar-icon">🔢</span>Basics
+            </a>
+            <a href="#math" class="category-link">
+                <span class="sidebar-icon">📐</span>Math
+            </a>
+            <a href="#strings" class="category-link">
+                <span class="sidebar-icon">📝</span>Strings
+            </a>
+            <a href="#arrays" class="category-link">
+                <span class="sidebar-icon">📊</span>Arrays
+            </a>
+            <a href="#sorting" class="category-link">
+                <span class="sidebar-icon">🔄</span>Sorting
+            </a>
+            <a href="#searching" class="category-link">
+                <span class="sidebar-icon">🔍</span>Searching
+            </a>
+            <a href="#recursion" class="category-link">
+                <span class="sidebar-icon">🔂</span>Recursion
+            </a>
+            <a href="#bitwise" class="category-link">
+                <span class="sidebar-icon">⚙️</span>Bitwise
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollTopBtn">↑</button>
+
     <div class="container">
-        <header>
+        <header id="home">
             <h1>{ Advanced C Programming }</h1>
             <p class="subtitle">100+ Complete Programs with Examples & Explanations</p>
         </header>
@@ -1808,8 +1984,101 @@ You entered: 42</div>
         </div>
  
         <div class="divider"></div>
- 
-        <footer>
+
+        <!-- ABOUT SECTION -->
+        <div class="category-section" id="about">
+            <div class="category-title">ℹ️ About CodeMitra</div>
+            <div style="padding: 30px 20px; background: var(--category-bg); border-radius: 8px; margin: 20px 0;">
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 15px;">
+                    <strong>CodeMitra</strong> is your comprehensive learning platform for mastering programming fundamentals. We provide 100+ complete C programs with detailed explanations, time complexity analysis, and real-world examples.
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">
+                    Our mission is to help students, developers, and programmers understand core concepts through practical code examples and interactive learning. Whether you're a beginner or advanced learner, CodeMitra has something for everyone.
+                </p>
+                <h3 style="color: var(--accent); margin: 20px 0 10px 0;">✨ Features</h3>
+                <ul style="color: var(--text-light); line-height: 2;">
+                    <li>✅ 100+ Complete C Programs</li>
+                    <li>✅ Output Examples for Each Program</li>
+                    <li>✅ Time & Space Complexity Analysis</li>
+                    <li>✅ Categorized Learning Path</li>
+                    <li>✅ Search Functionality</li>
+                    <li>✅ Professional Code Syntax</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PYTHON SECTION -->
+        <div class="category-section" id="python">
+            <div class="category-title">🐍 Python Programming</div>
+            <div style="padding: 30px 20px; background: var(--category-bg); border-radius: 8px; margin: 20px 0;">
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Coming Soon! We're preparing a comprehensive Python programming guide with 100+ programs covering:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: rgba(0, 212, 255, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">📚 Core Concepts</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Variables, loops, functions, OOP</p>
+                    </div>
+                    <div style="background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-warm);">
+                        <h4 style="color: var(--accent-warm); margin-bottom: 10px;">🔧 Data Structures</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Lists, dicts, sets, tuples</p>
+                    </div>
+                    <div style="background: rgba(144, 238, 144, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid #90ee90;">
+                        <h4 style="color: #90ee90; margin-bottom: 10px;">🎯 Algorithms</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Sorting, searching, DP</p>
+                    </div>
+                    <div style="background: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid var(--highlight);">
+                        <h4 style="color: var(--highlight); margin-bottom: 10px;">💾 File Handling</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Read, write, JSON, CSV</p>
+                    </div>
+                </div>
+                <p style="color: var(--accent); font-size: 1rem; margin-top: 20px; text-align: center; font-weight: bold;">
+                    🚀 Check back soon for the complete Python guide!
+                </p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- CONTACT SECTION -->
+        <div class="category-section" id="contact">
+            <div class="category-title">📧 Get In Touch</div>
+            <div style="padding: 30px 20px; background: var(--category-bg); border-radius: 8px; margin: 20px 0;">
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                    Have questions, suggestions, or feedback? We'd love to hear from you! Connect with us through any of these channels:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(0, 212, 255, 0.15); padding: 20px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">📧 Email</h3>
+                        <p style="color: var(--text-light); margin-bottom: 8px;">support@codemitra.com</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Quick response within 24 hours</p>
+                    </div>
+                    <div style="background: rgba(255, 107, 107, 0.15); padding: 20px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: var(--accent-warm); margin-bottom: 10px;">💬 Social Media</h3>
+                        <p style="color: var(--text-light); margin-bottom: 8px;">@CodeMitra</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Follow on all platforms</p>
+                    </div>
+                    <div style="background: rgba(144, 238, 144, 0.15); padding: 20px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #90ee90; margin-bottom: 10px;">💡 Feedback Form</h3>
+                        <p style="color: var(--text-light); margin-bottom: 8px;">feedback.codemitra.com</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Share your suggestions</p>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; padding: 20px; background: rgba(0, 212, 255, 0.1); border-radius: 8px; border-left: 4px solid var(--accent);">
+                    <h4 style="color: var(--accent); margin-bottom: 10px;">🎯 What We're Looking For:</h4>
+                    <ul style="color: var(--text-muted); line-height: 2; margin: 0; padding-left: 20px;">
+                        <li>Bug reports and issues</li>
+                        <li>Feature requests and suggestions</li>
+                        <li>Program contributions</li>
+                        <li>Partnership opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
             <p>📚 100+ Advanced Programming Concepts | C Language Algorithms & Data Structures</p>
             <p style="margin-top: 10px; font-size: 0.85rem;">Master these fundamentals for better problem-solving and optimization skills</p>
             <p style="margin-top: 15px; font-size: 0.8rem; color: var(--accent);">✓ 100+ Complete C Programs with Output Examples & Complexity Analysis</p>
@@ -1817,6 +2086,7 @@ You entered: 42</div>
     </div>
  
     <script>
+        // Search functionality
         const searchBox = document.querySelector('.search-box');
         const codeCards = document.querySelectorAll('.code-card');
  
@@ -1842,6 +2112,66 @@ You entered: 42</div>
                 });
             });
         }
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Sidebar Navigation Active State
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav-link');
+        const categoryLinks = document.querySelectorAll('.category-link');
+        
+        function updateActiveLink() {
+            const scrollPosition = window.scrollY;
+            const sections = document.querySelectorAll('[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight) {
+                    const id = section.getAttribute('id');
+                    
+                    sidebarLinks.forEach(link => link.classList.remove('active'));
+                    categoryLinks.forEach(link => link.classList.remove('active'));
+                    
+                    const activeLink = document.querySelector(`a[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -3,261 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeMitra - Advanced C Programming</title>
+    <title>CodeMitra - Learn Coding Easily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-         .main-header {
-            background: #1976d2;
-            color: white;
-            text-align: center;
-            padding: 30px 10px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-          .main-header h1 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: bold;
-        }
-        
-        .main-header p {
-            margin-top: 8px;
-            font-size: 18px;
-        }
-        
-        .navbar {
-            background: #222;
-            text-align: center;
-            padding: 12px;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .navbar a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        
-        .navbar a:hover {
-            text-decoration: underline;
-            color: #7dd3fc;
-        }
- 
+
         :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #00d4ff;
-            --accent-warm: #ff6b6b;
-            --text-light: #eaeaea;
-            --text-muted: #a0a0a0;
-            --code-bg: #0f3460;
-            --highlight: #ffd700;
+            --primary-dark: #0a0e27;
+            --primary-light: #1a1f3a;
+            --accent-cyan: #00d9ff;
+            --accent-blue: #0066ff;
+            --accent-purple: #9d4edd;
+            --accent-coral: #ff6b6b;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --text-muted: #7a8499;
+            --surface: #151d35;
+            --border: #2d3748;
         }
- 
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Courier Prime', 'JetBrains Mono', monospace;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            color: var(--text-primary);
             line-height: 1.6;
-            padding: 0;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
-           body.dark {
-            color: white;
-           }
- 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
- 
-        header {
+
+        /* ===== HEADER ===== */
+        .main-header {
+            background: linear-gradient(135deg, #0052cc 0%, #0066ff 50%, #00a8ff 100%);
+            padding: 50px 20px;
             text-align: center;
-            margin-bottom: 60px;
-            animation: slideDown 0.8s ease-out;
-            padding: 40px 20px;
-            position: relative;
-        }
- 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-        }
- 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-style: italic;
-            letter-spacing: 2px;
-        }
- 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
- 
-        .code-card {
-            background: var(--code-bg);
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            padding: 30px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-out both;
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.2);
         }
- 
-        .code-card:nth-child(1) { animation-delay: 0.05s; }
-        .code-card:nth-child(2) { animation-delay: 0.1s; }
-        .code-card:nth-child(3) { animation-delay: 0.15s; }
-        .code-card:nth-child(4) { animation-delay: 0.2s; }
-        .code-card:nth-child(5) { animation-delay: 0.25s; }
-        .code-card:nth-child(6) { animation-delay: 0.3s; }
-        .code-card:nth-child(n+7) { animation-delay: 0.35s; }
- 
-        .code-card::before {
+
+        .main-header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 6s ease-in-out infinite;
         }
- 
-        .code-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-warm);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+
+        .main-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 8s ease-in-out infinite reverse;
         }
- 
-        .code-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: space-between;
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
         }
- 
-        .code-badge {
-            display: inline-block;
-            background: var(--accent-warm);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            animation: slideDown 0.8s ease-out;
         }
- 
-        pre {
-            background: var(--primary);
-            border-left: 4px solid var(--highlight);
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
- 
-        code {
-            color: var(--text-light);
-            font-family: 'Courier Prime', monospace;
-        }
- 
-        .keyword {
-            color: var(--accent);
-            font-weight: bold;
-        }
- 
-        .string {
-            color: #90ee90;
-        }
- 
-        .comment {
-            color: var(--text-muted);
-            font-style: italic;
-        }
- 
-        .number {
-            color: var(--highlight);
-        }
- 
-        .output-section {
-            background: rgba(0, 100, 120, 0.2);
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 0.9rem;
-        }
- 
-        .output-label {
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
- 
-        .output-content {
-            background: var(--primary);
-            padding: 12px;
-            border-radius: 4px;
-            color: #90ee90;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
-        }
- 
-        .description {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 15px;
-            line-height: 1.6;
-        }
- 
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            margin: 50px 0;
-        }
- 
+
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
- 
-        @keyframes fadeInUp {
+
+        .main-header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-header p {
+            font-size: 1.2rem;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(15, 22, 43, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 16px 28px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: var(--accent-cyan);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .navbar a:hover::before {
+            width: 100%;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .content-section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -267,162 +190,292 @@
                 transform: translateY(0);
             }
         }
- 
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card:nth-child(1) { animation-delay: 0.1s; }
+        .about-card:nth-child(2) { animation-delay: 0.2s; }
+        .about-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(157, 78, 221, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .about-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: var(--primary-dark);
+            padding: 14px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            margin-top: 80px;
-            padding: 40px 20px;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 50px 20px;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.2);
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 60px;
         }
- 
-        .top-header {
-            background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
-            padding: 40px 20px;
-            text-align: center;
-            margin-bottom: 0;
-            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
+
+        footer p {
+            margin: 8px 0;
         }
- 
-        .top-header h1 {
-            font-size: 3rem;
-            margin: 0;
-            color: white;
-            font-weight: 900;
-            letter-spacing: 1px;
-            background: none;
-            -webkit-text-fill-color: white;
+
+        .footer-links {
+            margin: 20px 0;
         }
- 
-        .top-header p {
-            color: #e0e0e0;
-            font-size: 1.1rem;
-            margin: 10px 0 0 0;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
- 
-        .navbar {
-            background-color: #222;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            flex-wrap: wrap;
-        }
- 
-        .navbar a {
-            color: white;
+
+        .footer-links a {
+            color: var(--accent-cyan);
             text-decoration: none;
-            padding: 18px 30px;
-            display: inline-block;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
+            margin: 0 15px;
+            transition: color 0.3s ease;
         }
- 
-        .navbar a:hover {
-            background-color: #333;
-            border-bottom-color: #0066ff;
-            color: #0066ff;
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
         }
- 
-        .search-container {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 0 20px;
-        }
- 
-        .search-box {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: white;
-            color: #333;
-            font-family: Arial, sans-serif;
-            transition: all 0.3s ease;
-        }
- 
-        .search-box:focus {
-            outline: none;
-            border-color: #0066ff;
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.2);
-        }
- 
-        .search-box::placeholder {
-            color: #999;
-        }
- 
-        .programs-available {
-            position: absolute;
-            top: 50%;
-            right: 40px;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 500;
-            font-family: 'Courier Prime', monospace;
-        }
- 
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
+            .main-header h1 {
+                font-size: 2.5rem;
             }
- 
-            h1 {
-                font-size: 2.2rem;
+
+            .main-header p {
+                font-size: 1rem;
             }
- 
-            .top-header h1 {
+
+            .navbar {
+                gap: 5px;
+            }
+
+            .navbar a {
+                padding: 12px 18px;
+                font-size: 0.85rem;
+            }
+
+            .section-header h2 {
                 font-size: 2rem;
             }
- 
-            .navbar a {
-                padding: 12px 15px;
-                font-size: 0.9rem;
+
+            .about-grid {
+                grid-template-columns: 1fr;
             }
- 
-            .programs-available {
-                position: static;
-                transform: none;
-                margin-top: 20px;
+
+            .about-card {
+                padding: 30px;
+            }
+
+            .content-section {
+                padding: 60px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-header {
+                padding: 30px 15px;
+            }
+
+            .navbar a {
+                padding: 10px 12px;
+                font-size: 0.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-card {
+                padding: 25px 20px;
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
             }
         }
     </style>
-    <!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4428050944981708"
-     crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- HEADER -->
     <header class="main-header">
-    <h1>CodeMitra</h1>
-    <p>Learn Coding Easily</p>
-</header>
- <!-- Navigation -->
-    <div class="navbar">
-        <a href="index.html">Home</a>
-       <a hef="about.html">About</a>
-               <a href="c.html">C Programs</a>
+        <div class="header-content">
+            <h1>CodeMitra</h1>
+            <p>Learn Coding Easily</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="c.html">C Programs</a>
         <a href="python.html">Python</a>
         <a href="#contact">Contact</a>
-    </div>
+    </nav>
 
-<h2>About CodeMitra</h2>
+    <!-- MAIN CONTENT -->
+    <section class="content-section container">
+        <div class="section-header">
+            <h2>About CodeMitra</h2>
+            <p>Your gateway to mastering coding fundamentals with clear explanations and hands-on practice</p>
+        </div>
 
-<p>
-CodeMitra is a simple website to help students learn coding easily.
-Here you can find C programs, Python programs, and explanations in simple language.
-</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon">📚</div>
+                <h3>Learn C Programming</h3>
+                <p>Master the fundamentals of C programming with simple, easy-to-understand examples and detailed explanations for every concept.</p>
+                <a href="c.html" class="cta-button">Explore C Programs</a>
+            </div>
 
-<p>
-This website is made for students to prepare for exams and improve coding skills.
-</p>
+            <div class="about-card">
+                <div class="card-icon">🐍</div>
+                <h3>Python Mastery</h3>
+                <p>Start your Python journey with practical programs, clear logic explanations, and real-world coding examples.</p>
+                <a href="python.html" class="cta-button">Explore Python</a>
+            </div>
 
+            <div class="about-card">
+                <div class="card-icon">🎯</div>
+                <h3>Exam Preparation</h3>
+                <p>Prepare confidently for your coding exams with curated programs, practice exercises, and comprehensive topic coverage.</p>
+                <a href="#" class="cta-button">Start Practice</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>CodeMitra</strong> © 2026. Your learning companion for coding excellence.</p>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>Made with ❤️ for students and learners everywhere</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - CodeMitra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            background: #0a0e27;
+            color: white;
+        }
+        
+        #liveWallCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            display: block;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.3);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .main-header {
+            background: #1976d2;
+            color: white;
+            text-align: center;
+            padding: 30px 10px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        
+        .main-header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .main-header p {
+            margin-top: 8px;
+            font-size: 18px;
+        }
+        
+        .navbar {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .navbar a:last-child {
+            border-right: none;
+        }
+        
+        .navbar a:hover {
+            background: rgba(25, 118, 210, 0.3);
+            color: #64b5f6;
+            transform: translateY(-2px);
+        }
+        
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #64b5f6, #42a5f5);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar a:hover::after {
+            width: 100%;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+        
+        .contact-info {
+            background: rgba(30, 41, 76, 0.6);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .contact-item {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(100, 181, 246, 0.1);
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .contact-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            color: #64b5f6;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details p {
+            color: #b0bec5;
+            line-height: 1.6;
+        }
+        
+        .contact-details a {
+            color: #64b5f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: #42a5f5;
+            text-decoration: underline;
+        }
+        
+        .social-section {
+            background: rgba(25, 118, 210, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            text-align: center;
+        }
+        
+        .social-section h3 {
+            color: #64b5f6;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1976d2, #1565c0);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(100, 181, 246, 0.3);
+        }
+        
+        footer {
+            background: rgba(15, 20, 35, 0.95);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 60px;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(100, 181, 246, 0.1);
+        }
+        
+        footer p {
+            color: #b0bec5;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-info {
+                padding: 25px;
+            }
+            
+            .contact-item {
+                gap: 15px;
+            }
+            
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .navbar a {
+                padding: 10px 15px;
+                font-size: 14px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .navbar a:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="liveWallCanvas"></canvas>
+
+<header class="main-header">
+    <h1>CodeMitra</h1>
+    <p>Learn Coding Easily</p>
+</header>
+
+<nav class="navbar">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="c.html">🔤 C Programs</a>
+    <a href="python.html">🐍 Python</a>
+    <a href="contact.html">📧 Contact</a>
+</nav>
+
+<div class="container">
+    <h1 class="page-title">📧 Get In Touch</h1>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-details">
+                <h3>Email</h3>
+                <p>Have questions? Send us an email and we'll get back to you as soon as possible.</p>
+                <a href="mailto:support@codemitra.com">support@codemitra.com</a>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-details">
+                <h3>Messages</h3>
+                <p>Drop us a message on social media. We're active on Twitter and GitHub.</p>
+                <p style="margin-top: 8px; font-size: 0.9rem;">Follow us for updates and coding tips!</p>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">⏰</div>
+            <div class="contact-details">
+                <h3>Response Time</h3>
+                <p>We typically respond within 24 hours. For urgent matters, reach out via social media.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="social-section">
+        <h3>Connect With Us</h3>
+        <div class="social-links">
+            <a href="https://github.com" title="GitHub" target="_blank">🐙</a>
+            <a href="https://twitter.com" title="Twitter" target="_blank">𝕏</a>
+            <a href="mailto:support@codemitra.com" title="Email">✉️</a>
+            <a href="https://linkedin.com" title="LinkedIn" target="_blank">💼</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; <span id="year"></span> CodeMitra. All rights reserved. | Learn Coding Easily</p>
+</footer>
+
+<script>
+    const canvas = document.getElementById('liveWallCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 50;
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = (Math.random() - 0.5) * 2;
+            this.size = Math.random() * 3 + 1;
+            this.brightness = Math.random() * 100 + 50;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            
+            this.x = Math.max(0, Math.min(canvas.width, this.x));
+            this.y = Math.max(0, Math.min(canvas.height, this.y));
+            
+            this.brightness += (Math.random() - 0.5) * 2;
+            this.brightness = Math.max(30, Math.min(100, this.brightness));
+        }
+        
+        draw() {
+            ctx.fillStyle = `hsla(200, 100%, ${this.brightness}%, 0.8)`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.strokeStyle = `hsla(200, 100%, ${this.brightness}%, 0.3)`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    ctx.strokeStyle = `hsla(200, 100%, 60%, ${(1 - distance / 150) * 0.3})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.fillStyle = 'rgba(10, 14, 39, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        drawConnections();
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+    
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4428050944981708"
+     crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+var sc_project=13222259; 
+var sc_invisible=1; 
+var sc_security="df146bdd"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+
+</body>
+</html>
